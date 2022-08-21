@@ -19,7 +19,7 @@ const sendRandomMsg = () => {
     client.channels.cache.get('1006941719666905089').send(randomMsg[random(0, randomMsg.length - 1)]);
 }
 
-setInterval(function(){ sendRandomMsg() }, 1000 * 60 * 60 * 3);
+setInterval(function(){ sendRandomMsg() }, 1000 * 60 * 60 * 2);
 
 });
 console.log('Ready!');
