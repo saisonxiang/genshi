@@ -9,14 +9,6 @@ const {
 } = require('discord.js');
 const { token } = require('./config.json');
 
-// I like importing the intents and partials this way, just to make things a little more visible. 
-// But the main things we're importing here are the Guild, and GuildMembers [PLURAL]
-const { Guilds, GuildMembers, MessageContent, GuildMessages } = GatewayIntentBits;
-
-// And here, we're importing the GuildMember [SINGULAR] for our Partials
-const { User, Message, Channel, GuildMember } = Partials;
-
-// Create Discord Client
 const client = new Client({
     intents: [
         Guilds,
@@ -34,55 +26,11 @@ const client = new Client({
 
 let prefix = '!';
 
-// When the client is ready, run this code (only once)
 client.once('ready', () => {
-
-// Adding the GuildMembers to our intents, and GuildMember to our partials allows for us to 
-// receive the info we need for a welcome message; ei. when a member joins
-
-// And lastly, when a member joins. I noticed you had the event inside your ready event, 
-// but it needs to be outside the ready so be sure to double check that :)
 
 client.on('guildMemberAdd', async (GuildMember) => {
 console.log(GuildMember); // View the member data
 
-});
-
-client.on('guildMemberAdd', guildMember =>{
-    const embed7 = new EmbedBuilder()
-
-    .setColor(0x0099FF)
-	.setTitle('Shy Shy Teddy\'s Cyberspace')
-	.setURL('https://paypal.me/tripbranch')
-	.setAuthor({name: `${guildMember.user.username} joined today`, iconURL: guildMember.displayAvatarURL({dynamic: true}), url: 'https://paypal.me/tripbranch'})
-    .setThumbnail(`https://clusterflux.files.wordpress.com/2022/08/hirriio.png`)
-    .setDescription('It appears they have decided to live amongst the cyber-teddies')
-	.setImage(`https://clusterflux.files.wordpress.com/2022/08/teddy.png`)
-	.setTimestamp()
-	.setFooter({ text: '"Don\'t fuck the place up, please", Shy Shy Teddy', iconURL: `https://clusterflux.files.wordpress.com/2022/01/obelisk-template.png` });
-   
-    guildMember.guild.channels.cache.get('1010768161349587035').send({embeds: [embed7]})
-});
-
-client.on('guildMemberRemove', async (GuildMember) => {
-console.log(GuildMember); // View the member data
-    
-});
-
-client.on('guildMemberRemove', guildMember =>{
-    const embed8 = new EmbedBuilder()
-
-    .setColor(0x0099FF)
-	.setTitle('Shy Shy Teddy\'s Cyberspace')
-	.setURL('https://paypal.me/tripbranch')
-	.setAuthor({name: `${guildMember.user.username} left today`, iconURL: guildMember.displayAvatarURL({dynamic: true}), url: 'https://paypal.me/tripbranch'})
-    .setThumbnail(`https://clusterflux.files.wordpress.com/2022/08/white-noise.png`)
-    .setDescription('It appears they have decided to leave the land of the cyber-teddies')
-	.setImage(`https://clusterflux.files.wordpress.com/2022/08/princess-template.png`)
-	.setTimestamp()
-	.setFooter({ text: '"May the cyber-waifus look over you", Shy Shy Teddy', iconURL: `https://clusterflux.files.wordpress.com/2022/01/obelisk-template.png` });
-   
-    guildMember.guild.channels.cache.get('1010768161349587035').send({embeds: [embed8]})
 });
 
 const random = (min, max) => {
